@@ -1,0 +1,488 @@
+<!DOCTYPE html> <html lang="zh"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width,initial-scale=1"> <title>Agnes Creative OS</title> <style>@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');*{box-sizing:border-box;margin:0;padding:0}body{font-family:'Inter',sans-serif;background:#080810;color:#e2e8f0;display:flex;height:100vh;overflow:hidden;position:relative}body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 80% 60% at 15% 10%,rgba(124,58,237,.2) 0%,transparent 55%),radial-gradient(ellipse 60% 50% at 85% 85%,rgba(59,130,246,.14) 0%,transparent 55%),radial-gradient(ellipse 40% 40% at 50% 50%,rgba(16,185,129,.07) 0%,transparent 65%);pointer-events:none;z-index:0}#sidebar{width:230px;background:rgba(12,12,22,.75);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-right:1px solid rgba(255,255,255,.06);display:flex;flex-direction:column;position:relative;z-index:1}.logo{padding:20px 18px 12px;font-size:17px;font-weight:700;background:linear-gradient(135deg,#a78bfa,#60a5fa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:-.3px}.sb-new{margin:0 12px 10px;padding:9px;background:linear-gradient(135deg,#7c3aed,#4f46e5);color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:13px;font-weight:500;width:calc(100% - 24px);transition:.2s;box-shadow:0 4px 15px rgba(124,58,237,.3);font-family:inherit}.sb-new:hover{background:linear-gradient(135deg,#6d28d9,#4338ca);box-shadow:0 4px 20px rgba(124,58,237,.45);transform:translateY(-1px)}#proj-list{flex:1;overflow-y:auto;padding:4px 0}#proj-list::-webkit-scrollbar{width:3px}#proj-list::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1);border-radius:2px}.pi{padding:10px 14px;cursor:pointer;font-size:13px;border-left:2px solid transparent;transition:.15s;margin:1px 6px;border-radius:6px}.pi:hover{background:rgba(255,255,255,.05)}.pi.active{background:rgba(124,58,237,.15);border-left-color:#a78bfa;color:#c4b5fd}.pi-name{font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.pi-meta{font-size:11px;color:#4b5563;margin-top:2px}#sb-bot{padding:12px}#sb-bot button{width:100%;padding:9px;background:rgba(255,255,255,.04);color:#6b7280;border:1px solid rgba(255,255,255,.08);border-radius:8px;cursor:pointer;font-size:12px;font-family:inherit;transition:.2s}#sb-bot button:hover{color:#e2e8f0;background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.15)}#main{flex:1;display:flex;flex-direction:column;overflow:hidden;position:relative;z-index:1}.view{display:none;flex:1;overflow:hidden;flex-direction:column}.view.active{display:flex}#view-home{align-items:center;justify-content:center;padding:40px}.hcard{background:rgba(255,255,255,.04);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid rgba(255,255,255,.09);border-radius:16px;padding:36px;width:100%;max-width:520px;box-shadow:0 8px 40px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.08)}.hcard h2{background:linear-gradient(135deg,#a78bfa,#60a5fa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:24px;font-size:20px;font-weight:600}.fr{margin-bottom:16px}.fr label{display:block;font-size:11px;font-weight:500;color:#6b7280;margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px}.fr input,.fr textarea,.fr select{width:100%;background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:9px 12px;color:#e2e8f0;font-size:13px;font-family:inherit;outline:none;transition:.2s}.fr textarea{resize:vertical;min-height:80px}.fr input:focus,.fr textarea:focus,.fr select:focus{border-color:rgba(124,58,237,.6);background:rgba(0,0,0,.45);box-shadow:0 0 0 3px rgba(124,58,237,.1)}.fr select option{background:#1a1a2e}.btn1{background:linear-gradient(135deg,#7c3aed,#4f46e5);color:#fff;border:none;border-radius:8px;padding:11px 24px;cursor:pointer;font-size:14px;font-weight:600;font-family:inherit;transition:.2s;box-shadow:0 4px 15px rgba(124,58,237,.35)}.btn1:hover{background:linear-gradient(135deg,#6d28d9,#4338ca);box-shadow:0 4px 22px rgba(124,58,237,.5);transform:translateY(-1px)}.btn2{background:rgba(124,58,237,.1);color:#a78bfa;border:1px solid rgba(124,58,237,.3);border-radius:8px;padding:7px 14px;cursor:pointer;font-size:12px;font-family:inherit;font-weight:500;transition:.2s}.btn2:hover{background:rgba(124,58,237,.2);border-color:rgba(124,58,237,.5)}.ph{padding:14px 20px;background:rgba(255,255,255,.03);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.06);display:flex;align-items:center;gap:10px}.ph h2{flex:1;font-size:15px;font-weight:600}.ph .st{font-size:11px;color:#4b5563}.pbody{flex:1;display:flex;overflow:hidden}.ptabs{width:150px;background:rgba(255,255,255,.02);border-right:1px solid rgba(255,255,255,.05);padding:8px 0;flex-shrink:0}.tb{width:100%;padding:10px 16px;background:transparent;border:none;color:#6b7280;text-align:left;cursor:pointer;font-size:13px;font-family:inherit;border-left:2px solid transparent;transition:.15s}.tb:hover{color:#e2e8f0;background:rgba(255,255,255,.04)}.tb.active{color:#a78bfa;background:rgba(124,58,237,.1);border-left-color:#a78bfa}.tcont{flex:1;overflow-y:auto;padding:20px}.tcont::-webkit-scrollbar{width:3px}.tcont::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1);border-radius:2px}.tp{display:none}.tp.active{display:block}.pr{width:250px;background:rgba(255,255,255,.02);border-left:1px solid rgba(255,255,255,.05);padding:16px;overflow-y:auto;flex-shrink:0}.rs{margin-bottom:20px}.rs h4{font-size:10px;color:#374151;margin-bottom:10px;text-transform:uppercase;letter-spacing:.8px;font-weight:600}.cgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px}.cc{background:rgba(255,255,255,.04);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:14px;cursor:pointer;transition:.2s;border-top:1px solid rgba(255,255,255,.1)}.cc:hover{background:rgba(255,255,255,.07);border-color:rgba(124,58,237,.4);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.3)}.cc.done{box-shadow:0 0 0 1px rgba(34,197,94,.2) inset}.cc.running{box-shadow:0 0 0 1px rgba(245,158,11,.2) inset;animation:pu 1.5s infinite}.cc.pending{opacity:.7}@keyframes pu{0%,100%{opacity:1}50%{opacity:.6}}.cc .cn{font-size:10px;color:#4b5563;margin-bottom:4px;font-weight:500;text-transform:uppercase;letter-spacing:.4px}.cc .ct{font-size:13px;font-weight:600;margin-bottom:6px;color:#e2e8f0}.cc .cp{font-size:11px;color:#6b7280;line-height:1.5;max-height:44px;overflow:hidden}.cc .cm{font-size:11px;color:#4b5563;margin-top:8px;display:flex;align-items:center;gap:4px}.cc.done .cm{color:#22c55e}.cc.running .cm{color:#f59e0b}.dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:#374151;margin-right:6px;flex-shrink:0}.dot.run{background:#f59e0b;animation:pu 1s infinite;box-shadow:0 0 6px rgba(245,158,11,.5)}.dot.ok{background:#22c55e;box-shadow:0 0 6px rgba(34,197,94,.4)}.arow{display:flex;align-items:center;padding:6px 0;font-size:12px;border-bottom:1px solid rgba(255,255,255,.04)}.rh{padding:14px 20px;background:rgba(255,255,255,.03);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.06);display:flex;align-items:center;gap:12px}.rbody{flex:1;overflow-y:auto;padding:48px;max-width:760px;margin:0 auto;width:100%;line-height:2;font-size:15px;white-space:pre-wrap;color:#d1d5db}.rbody::-webkit-scrollbar{width:3px}.rbody::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1);border-radius:2px}.seth{padding:14px 20px;background:rgba(255,255,255,.03);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.06);display:flex;align-items:center;gap:12px}.setb{flex:1;overflow-y:auto;padding:24px;max-width:700px}.setb::-webkit-scrollbar{width:3px}.setb::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1);border-radius:2px}.setsec{background:rgba(255,255,255,.04);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:22px;margin-bottom:16px;box-shadow:inset 0 1px 0 rgba(255,255,255,.06)}.setsec h3{font-size:13px;font-weight:600;background:linear-gradient(135deg,#a78bfa,#60a5fa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:16px}.pi2{margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,.05)}.pi2:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}.pi2 label{font-size:11px;color:#6b7280;display:block;margin-bottom:6px;font-weight:500;text-transform:uppercase;letter-spacing:.4px}.pi2 textarea{width:100%;background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:9px;color:#e2e8f0;font-size:12px;font-family:inherit;resize:vertical;min-height:80px;outline:none;transition:.2s}.pi2 textarea:focus{border-color:rgba(124,58,237,.5);box-shadow:0 0 0 3px rgba(124,58,237,.08)}.pi2 button{margin-top:8px;padding:6px 14px;background:linear-gradient(135deg,#7c3aed,#4f46e5);color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:12px;font-family:inherit;font-weight:500;transition:.2s}.pi2 button:hover{background:linear-gradient(135deg,#6d28d9,#4338ca)}.kv{width:100%;border-collapse:collapse;font-size:12px}.kv td{padding:7px 8px;border-bottom:1px solid rgba(255,255,255,.04);vertical-align:top}.kv td:first-child{color:#4b5563;width:35%}.ccard{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:14px;margin-bottom:10px}.ccard h4{color:#a78bfa;margin-bottom:6px;font-size:13px}.ccard p{font-size:12px;color:#6b7280;line-height:1.6}.notice{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:10px;padding:24px;color:#4b5563;font-size:13px;text-align:center}.lrow{display:flex;gap:8px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px}.lrow .nd{color:#a78bfa;width:130px;flex-shrink:0;font-weight:500}.c-ok{color:#22c55e}.c-run{color:#f59e0b}.c-err{color:#ef4444}#gc{width:100%;height:480px;background:rgba(0,0,0,.3);border-radius:10px;border:1px solid rgba(255,255,255,.07);display:block}.upa{border:2px dashed rgba(255,255,255,.1);border-radius:10px;padding:32px;text-align:center;color:#4b5563;cursor:pointer;transition:.2s}.upa:hover{border-color:rgba(124,58,237,.5);color:#a78bfa}</style> </head> <body> <div id="sidebar">
+    <div class="logo">Agnes OS</div>
+    <button class="sb-new" onclick="showHome()">+ 新建小说</button>
+    <div id="proj-list"></div>
+    <div id="sb-bot"><button onclick="showSettings()">⚙ 设置</button></div> </div> <div id="main">
+    <div id="view-home" class="view active">
+      <div class="hcard">
+        <h2>创作新小说</h2>
+        <div class="fr"><label>灵感 / 故事核心</label><textarea id="i-idea" placeholder="一句话描述你的故事..."></textarea></div>
+        <div class="fr"><label>风格</label><select id="i-style">
+          <option value="起点爽文">起点爽文</option>
+          <option value="番茄爽文">番茄爽文</option>
+          <option value="斗破修仙">斗破/修仙</option>
+          <option value="都市异能">都市异能</option>
+          <option value="言情甜宠">言情/甜宠</option>
+          <option value="科幻末世">科幻/末世</option>
+          <option value="玄幻奇幻">玄幻/奇幻</option>
+          <option value="武侠历史">武侠/历史</option>
+          <option value="文学向">文学向</option>
+        </select></div>
+        <div class="fr"><label>目标章节数</label><input id="i-ch" type="number" value="20" min="1" max="200"></div>
+        <button class="btn1" onclick="createProject()">开始创作</button>
+      </div>
+    </div>
+    <div id="view-project" class="view">
+      <div class="ph">
+        <h2 id="ptitle">项目</h2>
+        <div id="psynopsis" style="font-size:12px;color:#6b7280;margin-top:4px;max-width:600px;line-height:1.6"></div>
+        <span class="st" id="pstats"></span>
+        <button class="btn2" id="btn-run" onclick="runPipeline()">▶ 开始生成</button>
+        <button class="btn2" id="btn-cont" onclick="showContinueDialog()" style="display:none">↺ 续写</button>
+        <button class="btn2" id="btn-fix" onclick="runFixMeta()" title="重新生成小说名、简介、章节名、角色">⚙ 修复元数据</button>
+        <button class="btn2" onclick="exportTxt()">↓ 导出TXT</button>
+      </div>
+      <div class="pbody">
+        <div class="ptabs">
+          <button class="tb active" onclick="stab(this,'ch')">章节</button>
+          <button class="tb" onclick="stab(this,'ov')">概览</button>
+          <button class="tb" onclick="stab(this,'ca')">角色</button>
+          <button class="tb" onclick="stab(this,'wo')">世界观</button>
+          <button class="tb" onclick="stab(this,'pl')">剧情</button>
+          <button class="tb" onclick="stab(this,'gr')">关系图谱</button>
+          <button class="tb" onclick="stab(this,'kb')">知识库</button>
+          <button class="tb" onclick="stab(this,'lg')">日志</button>
+        </div>
+        <div class="tcont">
+          <div id="tp-ch" class="tp active"><div class="cgrid" id="cgrid"></div></div>
+          <div id="tp-ov" class="tp"><div id="ov-c"></div></div>
+          <div id="tp-ca" class="tp"><div id="ca-c"></div></div>
+          <div id="tp-wo" class="tp"><div id="wo-c"></div></div>
+          <div id="tp-pl" class="tp"><div id="pl-c"></div></div>
+          <div id="tp-gr" class="tp"><canvas id="gc"></canvas></div>
+          <div id="tp-kb" class="tp"><div id="kb-c"></div></div>
+          <div id="tp-lg" class="tp"><div id="lg-c"></div></div>
+        </div>
+        <div class="pr">
+          <div class="rs"><h4>流水线</h4><div id="agent-st"></div></div>
+          <div class="rs"><h4>统计</h4><div id="right-st"></div></div>
+        </div>
+      </div>
+    </div>
+    <div id="view-reader" class="view">
+      <div class="rh">
+        <button class="btn2" onclick="showView('project')">← 返回</button>
+        <h3 id="rtitle" style="flex:1"></h3>
+        <button class="btn2" id="r-edit-btn" onclick="toggleEdit()">编辑</button>
+        <button class="btn2" onclick="promptRewrite()">重写</button>
+      </div>
+      <div class="rbody" id="rbody"></div>
+      <div id="r-edit-bar" style="display:none;padding:8px 20px;background:rgba(0,0,0,.3);border-top:1px solid rgba(255,255,255,.06);text-align:right">
+        <button class="btn2" onclick="saveEdit()">保存</button>
+        <button class="btn2" style="margin-left:8px" onclick="cancelEdit()">取消</button>
+      </div>
+    </div>
+    <div id="view-settings" class="view">
+      <div class="seth">
+        <button class="btn2" id="set-back">← 返回</button>
+        <h3>设置</h3>
+      </div>
+      <div class="setb">
+        <div class="setsec">
+          <h3>API 配置</h3>
+          <div class="fr"><label>DeepSeek API Key</label><input id="i-key" type="password" placeholder="sk-..."></div>
+          <div class="fr"><label>模型</label><select id="i-model">
+            <option value="deepseek-chat">deepseek-chat (V3)</option>
+            <option value="deepseek-reasoner">deepseek-reasoner (R1)</option>
+          </select></div>
+          <button class="btn1" onclick="saveSettings()">保存</button>
+        </div>
+        <div class="setsec"><h3>提示词管理</h3><div id="prompts-list"></div></div>
+      </div>
+    </div> </div>
+ 
+<div id="cont-dialog" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:999;align-items:center;justify-content:center"><div style="background:#13131f;border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:28px;width:340px"><h3 style="margin-bottom:18px;font-size:15px">续写设置</h3><div class="fr"><label>续写章数</label><input id="cont-n" type="number" value="10" min="1" max="500"></div><div style="margin:14px 0;background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.3);border-radius:8px;padding:10px 12px"><div style="display:flex;align-items:center;gap:8px"><input type="checkbox" id="cont-ending" style="width:16px;height:16px;accent-color:#ef4444"><label for="cont-ending" style="font-size:13px;cursor:pointer;color:#fca5a5;font-weight:500">写完结局（终结全书，无法再续写）</label></div><div style="font-size:11px;color:#ef4444;margin-top:6px;padding-left:24px">⚠ 勾选后 AI 将收束所有伏笔并写大结局</div></div><div style="display:flex;gap:8px;justify-content:flex-end;margin-top:18px"><button class="btn2" onclick="document.getElementById('cont-dialog').style.display='none'">取消</button><button class="btn1" onclick="startContinue()">开始续写</button></div></div></div>
+<script> const S={cur:'home',prev:'home',pid:null,streamPid:null,chars:[],projData:null};
+ const runningPids=new Set();
+ function showView(n){
+    document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+    const el=document.getElementById('view-'+n);
+    if(el)el.classList.add('active');
+    S.prev=S.cur; S.cur=n; } function showHome(){showView('home');} function showSettings(){showView('settings');loadSettings();} document.getElementById('set-back').onclick=()=>showView(S.prev||'home');
+ function stab(btn,name){
+    document.querySelectorAll('.tb').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.tp').forEach(p=>p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tp-'+name).classList.add('active');
+    if(name==='gr')drawGraph();
+    if(name==='kb')loadKB();
+    if(name==='lg')loadLogs();
+    if(name==='wo')renderWorld();
+    if(name==='ca')renderChars();
+    if(name==='pl')renderPlot();
+    if(name==='ov')renderOverview(); }
+ function esc(s){const d=document.createElement('div');d.textContent=String(s||'');return d.innerHTML;}
+ async function loadProjects(){
+    try{
+      const r=await fetch('/api/projects');
+      const d=await r.json();
+      const el=document.getElementById('proj-list');
+      el.innerHTML='';
+      d.forEach(p=>{
+        const div=document.createElement('div');
+        div.className='pi'+(S.pid===p.id?' active':'');
+        div.innerHTML=`<div class="pi-name">${esc(p.name||(p.idea||'').slice(0,20)||'未命名')}</div><div class="pi-meta">${p.done_chapters}章 ${p.total_words}字<span class="del-btn" onclick="event.stopPropagation();delProject(${p.id})" style="float:right;color:#4b5563;cursor:pointer;padding:0 2px" title="删除">✕</span></div>`;
+        div.onclick=()=>openProject(p.id);
+        el.appendChild(div);
+      });
+    }catch(e){} }
+ async function delProject(pid){
+    if(!confirm("确定删除这部小说？"))return;
+    await fetch("/api/projects/"+pid,{method:"DELETE"});
+    if(S.pid===pid){S.pid=null;showHome();}
+    loadProjects(); }
+ async function openProject(pid){
+    S.pid=pid;
+    showView('project');
+    const r=await fetch('/api/projects/'+pid);
+    const d=await r.json();
+    S.projData=d;
+    S.chars=d.characters||[];
+    document.getElementById('ptitle').textContent=d.project.name||'未命名';
+    document.getElementById('psynopsis').textContent=d.project.synopsis||'';
+    updateStats(d.stats);
+    renderChapters(d.chapters);
+    const done=d.project.status==='done';
+    const hasCh=(d.chapters||[]).length>0;
+    const isRunning=runningPids.has(pid);
+    document.getElementById('btn-run').style.display=(!hasCh&&!done&&!isRunning)?'':'none';
+    document.getElementById('btn-cont').style.display=(hasCh&&!isRunning)?'':'none';
+    if(isRunning)S.streamPid=pid;
+    loadProjects(); }
+ function updateStats(st){
+    if(!st)return;
+    document.getElementById('pstats').textContent=st.done_chapters+'章 / '+st.total_words+'字 / ¥'+st.cost_cny;
+    document.getElementById('right-st').innerHTML='<table class="kv">'
+      +'<tr><td>已完成章节</td><td>'+st.done_chapters+'</td></tr>'
+      +'<tr><td>总字数</td><td>'+st.total_words+'</td></tr>'
+      +'<tr><td>Token消耗</td><td>'+st.tokens+'</td></tr>'
+      +'<tr><td>费用(CNY)</td><td>¥'+st.cost_cny+'</td></tr>'
+      +'</table>'; }
+ function renderChapters(chs){
+    const g=document.getElementById('cgrid');
+    g.innerHTML='';
+    (chs||[]).forEach(c=>{
+      const div=document.createElement('div');
+      div.className='cc '+(c.status||'pending');
+      div.id='cc-ch'+c.chapter_num;
+      div.innerHTML='<div class="cn">'+esc(c.title||'第'+c.chapter_num+'章')+'</div>'
+        +'<div class="cp" id="cp-ch'+c.chapter_num+'"></div>'
+        +'<div class="cm" id="cm-ch'+c.chapter_num+'">'+(c.status==='done'?c.word_count+'字':c.status)+'</div>';
+      if(c.status==='done'){div.dataset.cid=c.id;div.onclick=()=>openReader(c.id);}
+      g.appendChild(div);
+    }); }
+ async function openReader(cid){
+    S.cid=cid;
+    const r=await fetch('/api/projects/'+S.pid+'/chapters/'+cid);
+    const d=await r.json();
+    S.chapterContent=d.content||'';
+    document.getElementById('rtitle').textContent=d.title||'';
+    const rb=document.getElementById('rbody');
+    rb.contentEditable='false';rb.textContent=d.content||'';
+    document.getElementById('r-edit-bar').style.display='none';
+    document.getElementById('r-edit-btn').textContent='编辑';
+    showView('reader'); }
+
+ async function toggleEdit(){
+    const rb=document.getElementById('rbody');
+    const bar=document.getElementById('r-edit-bar');
+    const btn=document.getElementById('r-edit-btn');
+    if(rb.contentEditable==='true'){
+      rb.contentEditable='false';bar.style.display='none';btn.textContent='编辑';
+    }else{
+      rb.contentEditable='true';rb.focus();bar.style.display='block';btn.textContent='编辑中';
+    } }
+ async function saveEdit(){
+    const content=document.getElementById('rbody').textContent;
+    await fetch('/api/projects/'+S.pid+'/chapters/'+S.cid,{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify({content,word_count:content.length})});
+    S.chapterContent=content;
+    document.getElementById('rbody').contentEditable='false';
+    document.getElementById('r-edit-bar').style.display='none';
+    document.getElementById('r-edit-btn').textContent='编辑';
+    loadProject(); }
+ function cancelEdit(){
+    const rb=document.getElementById('rbody');
+    rb.textContent=S.chapterContent;
+    rb.contentEditable='false';
+    document.getElementById('r-edit-bar').style.display='none';
+    document.getElementById('r-edit-btn').textContent='编辑'; }
+ function promptRewrite(){
+    const reason=prompt('这章哪里有问题？（AI将根据你的说明重写）');
+    if(reason===null)return;
+    rewriteChapter(S.cid,reason); }
+ async function rewriteChapter(cid,reason){
+    showView('project');
+    await fetch('/api/projects/'+S.pid+'/chapters/'+cid+'/run',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({reason})});
+    loadProject(); }
+ async function createProject(){
+    const name='';
+    const idea=document.getElementById('i-idea').value.trim();
+    if(!idea){alert('请输入灵感');return;}
+    const style=document.getElementById('i-style').value;
+    const ct=parseInt(document.getElementById('i-ch').value)||20;
+    const r=await fetch('/api/projects',{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({name,idea,style,chapter_target:ct})});
+    const d=await r.json();
+    if(d.error){alert(d.error);return;}
+    S.pid=d.id;
+    await loadProjects();
+    showView('project');
+    document.getElementById('ptitle').textContent=name;
+    document.getElementById('cgrid').innerHTML='';
+    document.getElementById('btn-run').style.display='none';
+    document.getElementById('btn-cont').style.display='none';
+    runPipeline(); }
+
+ function showContinueDialog(){document.getElementById("cont-dialog").style.display="flex"; }
+ async function startContinue(){
+    const n=parseInt(document.getElementById("cont-n").value)||10;
+    const ending=document.getElementById("cont-ending").checked;
+    document.getElementById("cont-dialog").style.display="none";
+    if(runningPids.has(S.pid)||!S.pid)return;
+    const pid=S.pid;
+    runningPids.add(pid);S.streamPid=pid;
+    document.getElementById("btn-cont").style.display="none";
+    document.getElementById("agent-st").innerHTML="";
+    try{
+      const resp=await fetch("/api/projects/"+pid+"/continue",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({n,ending})});
+      await readSSE(resp,pid);
+    }catch(e){alert("连接失败: "+e.message);}
+    runningPids.delete(pid);if(S.streamPid===pid)S.streamPid=null;
+    if(S.pid===pid)openProject(pid); }
+ async function runPipeline(){
+    if(runningPids.has(S.pid)||!S.pid)return;
+    const pid=S.pid;
+    runningPids.add(pid);S.streamPid=pid;
+    document.getElementById('btn-run').style.display='none';
+    document.getElementById('btn-cont').style.display='none';
+    document.getElementById('agent-st').innerHTML='';
+    try{
+      const resp=await fetch('/api/projects/'+pid+'/run',{method:'POST'});
+      await readSSE(resp,pid);
+    }catch(e){alert('连接失败: '+e.message);}
+    runningPids.delete(pid);if(S.streamPid===pid)S.streamPid=null;
+    if(S.pid===pid)openProject(pid); }
+ async function runFixMeta(){
+    if(!S.pid)return;
+    const pid=S.pid;
+    runningPids.add(pid);S.streamPid=pid;
+    document.getElementById('agent-st').innerHTML='';
+    try{
+      const resp=await fetch('/api/projects/'+pid+'/fix-meta',{method:'POST'});
+      await readSSE(resp,pid);
+    }catch(e){alert('连接失败: '+e.message);}
+    runningPids.delete(pid);if(S.streamPid===pid)S.streamPid=null;
+    if(S.pid===pid)openProject(pid); }
+ async function readSSE(resp,pid){
+    const reader=resp.body.getReader();
+    const dec=new TextDecoder();
+    let buf='';
+    while(true){
+      const{done,value}=await reader.read();
+      if(done)break;
+      buf+=dec.decode(value,{stream:true});
+      const parts=buf.split('\n\n');
+      buf=parts.pop();
+      for(const part of parts){
+        const line=part.replace(/^data: /,'').trim();
+        if(!line)continue;
+        try{handleSSE(JSON.parse(line),pid);}catch(e){}
+      }
+    } }
+ function handleSSE(e,pid){
+    if(S.pid!==pid)return;
+    if(e.type==='node_start'){
+      const ast=document.getElementById('agent-st');
+      let row=document.getElementById('ar-'+e.node);
+      if(!row){row=document.createElement('div');row.className='arow';row.id='ar-'+e.node;ast. appendChild(row);}
+      row.innerHTML='<span class="dot run"></span>'+esc(e.label||e.node);
+    }else if(e.type==='node_text'){let box=document.getElementById('nt-'+e.node);if(!box){box=document.createElement('div');box.id='nt-'+e.node;box.style='font-size:11px;color:#6b7280;max-height:48px;overflow:hidden;line-height:1.5;margin-top:2px;word-break:break-all';const row=document.getElementById('ar-'+e.node);if(row)row.appendChild(box);}box.textContent=(box.textContent+e.delta).slice(-200);}else if(e.type==='node_done'){
+      const row=document.getElementById('ar-'+e.node);
+      if(row){const dot=row.querySelector('.dot');if(dot){dot.classList.remove('run');dot.classList.add('ok');}}
+      if(e.node==='inspiration'&&e.data&&e.data.name){document.getElementById('ptitle').textContent=e.data.name;if(e.data.synopsis)document.getElementById('psynopsis').textContent=e.data.synopsis;loadProjects();}
+    }else if(e.type==='chapter_start'){
+      const g=document.getElementById('cgrid');
+      let cc=document.getElementById('cc-ch'+e.chapter_num);
+      if(!cc){
+        cc=document.createElement('div');cc.className='cc running';cc.id='cc-ch'+e.chapter_num;
+        cc.innerHTML='<div class="cn">'+esc(e.title||'第'+e.chapter_num+'章')+'</div>'
+          +'<div class="cp" id="cp-ch'+e.chapter_num+'"></div>'
+          +'<div class="cm" id="cm-ch'+e.chapter_num+'">生成中...</div>';
+        g.appendChild(cc);
+      }else{cc.className='cc running';}
+    }else if(e.type==='chapter_chunk'){
+      const cp=document.getElementById('cp-ch'+e.chapter_num);
+      if(cp)cp.textContent=(cp.textContent+(e.delta||'')).slice(0,120);
+    }else if(e.type==='chapter_done'){
+      const cc=document.getElementById('cc-ch'+e.chapter_num);
+      if(cc){cc.className='cc done';const cm=cc.querySelector('[id^="cm-"]');if(cm)cm.textContent=e.word_count+'字';if(e.cid){cc.dataset.cid=e.cid;cc.onclick=()=>openReader(e.cid);}}
+      if(e.stats)updateStats(e.stats);
+    }else if(e.type==='pipeline_done'){
+      if(e.stats)updateStats(e.stats);
+      document.getElementById('btn-cont').style.display='none';
+    }else if(e.type==='error'){
+      alert('错误: '+(e.msg||'未知'));
+    } }
+ async function exportTxt(){
+    if(!S.pid)return;
+    const r=await fetch('/api/projects/'+S.pid);
+    const d=await r.json();
+    const chs=(d.chapters||[]).filter(c=>c.status==='done').sort((a,b)=>a.chapter_num-b.chapter_num);
+    let txt='';
+    for(const c of chs){
+      const cr=await fetch('/api/projects/'+S.pid+'/chapters/'+c.id);
+      const cd=await cr.json();
+      txt+='第'+c.chapter_num+'章 '+c.title+'\n\n'+(cd.content||'')+'\n\n\n';
+    }
+    const blob=new Blob([txt],{type:'text/plain;charset=utf-8'});
+    const a=document.createElement('a');
+    a.href=URL.createObjectURL(blob);
+    a.download=(d.project.name||'novel')+'.txt';
+    a.click(); }
+ function renderOverview(){
+    if(!S.projData)return;
+    const p=S.projData.project;
+    const ws=S.projData.world_state||{};
+    let h=`<div class="ccard"><h4>${esc(p.name)}</h4>`+`<p>类型：${esc(p.genre||'-')}&nbsp;&nbsp;风格：${STYLE_CN[p.style]||p.style||'-'}</p>`+(p.synopsis?`<p style="margin-top:10px;color:#c4b5fd;line-height:1.8">${esc(p.synopsis)}</p>`+`<button class="btn2" style="margin-top:8px;font-size:11px" onclick="navigator.clipboard.writeText(${JSON.stringify(p.synopsis||'')}).then(()=>alert('简介已复制'))">复制简介</button>`:'')+`<p style="margin-top:8px;color:#4b5563;font-size:12px">${esc(p.idea||'')}</p></div>`;
+    if(ws.core){
+      h+='<div class="ccard"><h4>世界观核心</h4><table class="kv">';
+      Object.entries(ws.core).forEach(([k,v])=>{h+='<tr><td>'+esc(k)+'</td><td>'+esc(v)+'</td> </tr>';});
+      h+='</table></div>';
+    }
+    document.getElementById('ov-c').innerHTML=h; }
+ function renderChars(){
+    if(!S.chars||!S.chars.length){document.getElementById('ca-c').innerHTML='<div class="notice">暂无角色数据</div>';return;}
+    let h='';
+    S.chars.forEach(c=>{
+      let d={};try{d=JSON.parse(c.data||'{}');}catch(e){}
+      let st={};try{st=JSON.parse(c.current_state||'{}');}catch(e){}
+      h+='<div class="ccard"><h4>'+esc(c.name)+'<span style="font-size:11px;color:#888;margin-left:8px">'+esc(c.role||'')+'</span></h4>';
+      if(d.personality)h+='<p>性格：'+esc(d.personality)+'</p>';
+      if(d.goal)h+='<p>目标：'+esc(d.goal)+'</p>';
+      if(st.emotion)h+='<p>当前状态：'+esc(st.emotion)+'</p>';
+      h+='</div>';
+    });
+    document.getElementById('ca-c').innerHTML=h; }
+ function renderWorld(){
+    if(!S.projData){document.getElementById('wo-c').innerHTML='<div class="notice">暂无数据</div>';return;}
+    const ws=S.projData.world_state||{};
+    let h='';
+    Object.entries(ws).forEach(([cat,items])=>{
+      h+='<div class="ccard"><h4>'+(KEY_CN[cat]||cat)+'</h4><table class="kv">';
+      if(typeof items==='object')Object.entries(items).forEach(([k,v])=>{h+='<tr><td>'+(KEY_CN[k]||k)+'</td><td>'+esc(v)+'</td></tr>';});
+      h+='</table></div>';
+    });
+    document.getElementById('wo-c').innerHTML=h||'<div class="notice">暂无世界观数据</div>'; }
+ function renderPlot(){
+    if(!S.projData){document.getElementById('pl-c').innerHTML='<div class="notice">暂无数据</div>';return;}
+    const plots=S.projData.plots||[];
+    let h='';
+    plots.forEach(p=>{
+      let d={};try{d=JSON.parse(p.data||'{}');}catch(e){}if(d.plot_design)d=d.plot_design;
+      h+='<div class="ccard"><h4>'+esc(p.title||p.type||'剧情')+'</h4>';
+      const mp=d.main_plot||{};
+      if(mp.opening)h+='<p><b>开篇：</b>'+esc(mp.opening)+'</p>';
+      if(mp.climax)h+='<p><b>高潮：</b>'+esc(mp.climax)+'</p>';
+      if(mp.ending)h+='<p><b>结局：</b>'+esc(mp.ending)+'</p>';
+      h+='</div>';
+    });
+    document.getElementById('pl-c').innerHTML=h||'<div class="notice">暂无剧情数据</div>'; }
+ function drawGraph(){
+    const canvas=document.getElementById('gc');
+    const ctx=canvas.getContext('2d');
+    canvas.width=canvas.offsetWidth||800;
+    canvas.height=480;
+    const W=canvas.width,H=canvas.height;
+    ctx.clearRect(0,0,W,H);
+    if(!S.chars||!S.chars.length){
+      ctx.fillStyle='#666';ctx.font='14px sans-serif';
+      ctx.textAlign='center';ctx.fillText('暂无角色数据',W/2,H/2);
+      return;
+    }
+    const nodes=S.chars.map((c,i)=>({
+      id:i,name:c.name,
+      x:W/2+Math.cos(i/S.chars.length*Math.PI *2)*Math.min(W,H)*0.32,
+      y:H/2+Math.sin(i/S.chars.length*Math.PI*2)*Math.min(W,H)*0.32,
+      vx:0,vy:0
+    }));
+    let frame=0;
+    function tick(){
+      ctx.clearRect(0,0,W,H);
+      for(let i=0;i<nodes.length;i++){
+        for(let j=i+1;j<nodes.length;j++){
+          const a=nodes[i],b=nodes[j];
+          const dx=b.x-a.x,dy=b.y-a.y,dist=Math.sqrt(dx*dx+dy*dy)||1;
+          const f=(dist-160)/dist*0.04;
+          a.vx+=dx*f;a.vy+=dy*f;b.vx-=dx*f;b.vy-=dy*f;
+          ctx.strokeStyle='#2a2a3a';ctx.lineWidth=1;
+          ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke();
+        }
+      }
+      nodes.forEach(n=>{
+        n.vx+=(W/2-n.x)*0.002;n.vy+=(H/2-n.y)*0.002;
+        n.vx*=0.9;n.vy*=0.9;n.x+=n.vx;n.y+=n.vy;
+        ctx.beginPath();ctx.arc(n.x,n.y,22,0,Math.PI*2);
+        ctx.fillStyle='#7c3aed';ctx.fill();
+        ctx.fillStyle='#fff';ctx.font='11px sans-serif';ctx.textAlign='center';
+        ctx.fillText(n.name.slice(0,4),n.x,n.y+4);
+      });
+      if(frame++<300)requestAnimationFrame(tick);
+    }
+    tick(); }
+ async function loadKB(){
+    const el=document.getElementById("kb-c");
+    const r=await fetch("/api/knowledge/"+S.pid+"/files");
+    const d=await r.json();
+    const rows=(d||[]).map(f=>`<div style="display:flex;align-items:center;padding:8px 12px;background:rgba(255,255,255,.04);border-radius:6px;margin-bottom:6px;font-size:13px"><span style="flex:1">${esc(f.name)}</span><span style="color:#4b5563;font-size:11px;margin-right:12px">${esc((f.created_at||"").slice(0,10))}</span><button class="btn2" style="padding:3px 10px;font-size:11px" onclick="delKB(${f.id})">删除</button></div>`).join("");
+    el.innerHTML=`<div class="upa" onclick="document.getElementById(\'kbfile\').click()">点击上传文本文件（.txt / .md）</div><input id="kbfile" type="file" accept=".txt,.md" style="display:none"><div id="kb-list" style="margin-top:12px">${rows}</div>`;
+    document.getElementById("kbfile").onchange=async function(){
+      const file=this.files[0];if(!file)return;
+      const fd=new FormData();fd.append("file",file);
+      await fetch("/api/knowledge/"+S.pid+"/files",{method:"POST",body:fd});
+      loadKB();
+    }; }
+ async function delKB(fid){
+    await fetch('/api/knowledge/'+S.pid+'/files/'+fid,{method:'DELETE'});
+    loadKB(); }
+ async function loadLogs(){
+    if(!S.pid)return;
+    const _N={'inspiration':'灵感解析','world':'世界观构建','factions':'势力时间线','characters':'角色设计','plot':'剧情规划','chapter_plan':'章节规划','write':'章节写作','audit':'质量审核','fix':'内容修复','memory':'记忆更新','world_builder':'世界观构建','character_designer':'角色设计','plot_architect':'剧情规划','chapter_planner':'章节规划','writer':'章节写作','auditor':'质量审核','memory_manager':'记忆更新'};
+    const _S={'done':'完成','running':'运行中','pending':'等待','error':'失败'};
+    try{
+      const r=await fetch('/api/projects/'+S.pid+'/logs');
+      const d=await r.json();
+      document.getElementById('lg-c').innerHTML=(d||[]).map(row=>'<div class="lrow">'
+        +'<span class="nd">'+(_N[row.node]||row.node)+'</span>'
+        +'<span class="c-'+(row.status==='done'?'ok':row.status==='running'?'run':'err')+'">'+ (_S[row.status]||row.status)+'</span>'
+        +'<span style="margin-left:auto;color:#666">'+esc(row.tokens_used||0)+'tok</span>'
+        +'</div>').join('')||'<div class="notice">暂无日志</div>';
+    }catch(e){} }
+ async function loadSettings(){
+    try{
+      const r=await fetch('/api/settings');
+      const d=await r.json();
+      if(d.hint)document.getElementById('i-key').placeholder=d.hint;
+      if(d.model)document.getElementById('i-model').value=d.model;
+    }catch(e){}
+    try{
+      const r=await fetch('/api/prompts');
+      const d=await r.json();
+      document.getElementById('prompts-list').innerHTML=(d||[]).map(p=>'<div class="pi2">'
+        +'<label>'+({'world_builder':'世界观构建师','character_designer':'角色设计师','plot_architect':'剧情架构师','chapter_planner':'章节规划师','writer':'写作者','auditor':'质量审核员','fixer':'内容修复师','memory_manager':'记忆管理员'}[p.agent_name]||p.agent_name)+'</label>'
+        +'<textarea id="pt-'+p.id+'">'+esc(p.system_prompt||'')+'</textarea>'
+        +'<button onclick="savePrompt('+p.id+')">保存</button>'
+        +'</div>').join('');
+    }catch(e){} }
+ async function saveSettings(){
+    const key=document.getElementById('i-key').value;
+    const model=document.getElementById('i-model').value;
+    await fetch('/api/settings',{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({api_key:key,model:model})});
+    alert('已保存'); }
+ async function savePrompt(id){
+    const ta=document.getElementById('pt-'+id);
+    if(!ta)return;
+    await fetch('/api/prompts/'+id,{method:'PATCH',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({system_prompt:ta.value})});
+    alert('已保存'); }
+ loadProjects(); </script> </body> </html>

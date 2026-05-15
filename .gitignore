@@ -1,0 +1,7 @@
+agnes.db
+agnes.db-shm
+agnes.db-wal
+__pycache__/
+*.pyc
+test.txt
+index.html.bak
