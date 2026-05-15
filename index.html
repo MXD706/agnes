@@ -65,6 +65,7 @@
         <h3 id="rtitle" style="flex:1"></h3>
         <button class="btn2" id="r-edit-btn" onclick="toggleEdit()">编辑</button>
         <button class="btn2" onclick="promptRewrite()">重写</button>
+        <button class="btn2" onclick="copyFanqie()">复制到番茄</button>
       </div>
       <div class="rbody" id="rbody"></div>
       <div id="r-edit-bar" style="display:none;padding:8px 20px;background:rgba(0,0,0,.3);border-top:1px solid rgba(255,255,255,.06);text-align:right">
@@ -206,7 +207,8 @@
     rb.contentEditable='false';
     document.getElementById('r-edit-bar').style.display='none';
     document.getElementById('r-edit-btn').textContent='编辑'; }
- function promptRewrite(){
+ function copyFanqie(){var text=document.getElementById('rbody').textContent||'';var lines=text.split('\n').map(function(l){return l.trim();}).filter(function(l){return l;});navigator.clipboard.writeText(lines.join('\n\n'));}
+function promptRewrite(){
     const reason=prompt('这章哪里有问题？（AI将根据你的说明重写）');
     if(reason===null)return;
     rewriteChapter(S.cid,reason); }
